@@ -1,6 +1,6 @@
 /* =========================================================
    CONCRETE: a brutalist-postmodern design system
-   v0.3  ·  zero dependencies  ·  one file
+   v0.4  ·  zero dependencies  ·  one file
    palette: warm newsprint + ochre + deep teal + oxblood
             (civic-institutional, no fluorescents)
    theme:   light by default · .theme-dark opts in
@@ -364,6 +364,300 @@ hr.rule-thin { border: 0; border-top: 1px solid var(--rule); margin: var(--s-5) 
   cursor: pointer;
 }
 .theme-toggle:hover { background: var(--accent); color: var(--on-accent); }
+
+/* 5.11 FIELD (form group: label + input + hint/error) */
+.field { display: block; margin-bottom: var(--s-4); }
+.field > label,
+.field > .label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--s-2);
+}
+.field .hint {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  opacity: 0.7;
+  margin-top: var(--s-2);
+}
+.field .error {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--alert);
+  margin-top: var(--s-2);
+}
+
+/* 5.12 CHECK / RADIO (square, brutalist) */
+.check, .radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--t-sm);
+  user-select: none;
+}
+.check input[type="checkbox"],
+.radio input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  border: var(--border-w) solid var(--rule);
+  background: var(--paper);
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.check input[type="checkbox"]:checked,
+.radio input[type="radio"]:checked {
+  background: var(--accent);
+}
+.check input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px; top: 1px;
+  width: 6px; height: 11px;
+  border-right: 3px solid var(--on-accent);
+  border-bottom: 3px solid var(--on-accent);
+  transform: rotate(45deg);
+}
+.radio input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: var(--on-accent);
+}
+.check input:focus-visible,
+.radio input:focus-visible {
+  outline: 0;
+  box-shadow: var(--shadow-accent);
+}
+
+/* 5.13 LIST (native ul/ol with bar-bullets) */
+ul, ol { padding-left: var(--s-5); margin: 0 0 var(--s-4); }
+ul li, ol li { margin-bottom: var(--s-2); }
+ul { list-style: none; padding-left: 0; }
+ul > li { padding-left: var(--s-5); position: relative; }
+ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: var(--s-3);
+  height: 2px;
+  background: var(--accent);
+}
+ol { list-style: none; counter-reset: ol; padding-left: 0; }
+ol > li { padding-left: var(--s-7); position: relative; counter-increment: ol; }
+ol > li::before {
+  content: counter(ol, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--t-sm);
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+/* nested lists: don't compound padding */
+li > ul, li > ol { margin-top: var(--s-2); margin-bottom: 0; }
+
+/* 5.14 DETAILS / SUMMARY (accordion via native element) */
+details {
+  border: var(--border-w) solid var(--rule);
+  margin-bottom: var(--s-4);
+  background: var(--paper);
+}
+details summary {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--s-3) var(--s-4);
+  cursor: pointer;
+  background: var(--paper-2);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before {
+  content: "+";
+  display: inline-block;
+  width: 1em;
+  font-weight: 900;
+  color: var(--accent);
+  font-size: 1.2em;
+  line-height: 1;
+}
+details[open] summary::before { content: "−"; }
+details[open] summary { border-bottom: var(--border-w) solid var(--rule); }
+details .details-body { padding: var(--s-4); }
+details .details-body > *:last-child { margin-bottom: 0; }
+
+/* 5.15 HERO */
+.hero {
+  padding: var(--s-8) 0 var(--s-7);
+  border-bottom: var(--border-w-fat) solid var(--rule);
+  margin-bottom: var(--s-7);
+}
+.hero h1 { margin-bottom: var(--s-4); }
+.hero .lede {
+  font-family: var(--font-body);
+  font-size: var(--t-md);
+  max-width: 50ch;
+  line-height: 1.4;
+  margin-bottom: var(--s-5);
+}
+.hero .meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+/* 5.16 FOOTER */
+.footer {
+  border-top: var(--border-w-fat) solid var(--rule);
+  padding: var(--s-6) 0;
+  margin-top: var(--s-8);
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  justify-content: space-between;
+  align-items: baseline;
+}
+.footer a { color: var(--ink); }
+
+/* 5.17 PAGINATION */
+.pagination {
+  display: inline-flex;
+  gap: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+}
+.pagination a,
+.pagination span {
+  padding: var(--s-2) var(--s-3);
+  border: var(--border-w) solid var(--rule);
+  border-right-width: 0;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  min-width: 40px;
+  text-align: center;
+  font-weight: 700;
+}
+.pagination > :last-child { border-right-width: var(--border-w); }
+.pagination a:hover { background: var(--accent); color: var(--on-accent); }
+.pagination [aria-current="page"],
+.pagination .current { background: var(--ink); color: var(--paper); }
+
+/* 5.18 BREADCRUMB */
+.breadcrumb {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--s-4);
+  padding: var(--s-2) 0;
+}
+.breadcrumb a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 2px 4px;
+}
+.breadcrumb a:hover { background: var(--accent); color: var(--on-accent); }
+.breadcrumb [aria-current="page"] { opacity: 0.6; }
+.breadcrumb > :not(:last-child)::after {
+  content: "/";
+  display: inline-block;
+  margin: 0 var(--s-2);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 5.19 KBD (keyboard key) */
+kbd {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  font-weight: 700;
+  padding: 1px 8px;
+  border: var(--border-w) solid var(--rule);
+  background: var(--paper);
+  box-shadow: 2px 2px 0 0 var(--ink);
+  margin: 0 2px;
+  line-height: 1.4;
+  vertical-align: 1px;
+}
+
+/* 5.20 FIGURE / FIGCAPTION (label + download row beneath every image) */
+figure { margin: var(--s-5) 0; }
+figure img,
+figure video {
+  border: var(--border-w) solid var(--rule);
+  width: 100%;
+  display: block;
+}
+figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-top: 0;
+  padding: var(--s-2) var(--s-3);
+  border: var(--border-w) solid var(--rule);
+  border-top: 0;
+  background: var(--paper-2);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+figcaption .fig-label {
+  font-weight: 700;
+}
+figcaption .fig-meta {
+  opacity: 0.6;
+  font-weight: 400;
+  margin-left: var(--s-2);
+}
+figcaption .fig-download {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 2px 6px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+figcaption .fig-download::before {
+  content: "↓";
+  margin-right: 4px;
+  color: var(--accent);
+}
+figcaption .fig-download:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+figcaption .fig-download:hover::before { color: var(--on-accent); }
 
 /* ---------- 6. UTIL ------------------------------------ */
 .mono   { font-family: var(--font-mono); }

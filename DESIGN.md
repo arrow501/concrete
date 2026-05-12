@@ -1,4 +1,4 @@
-<div class="band">CONCRETE · v0.3 · BRUTALIST–POSTMODERN · ONE FILE · NO JS</div>
+<div class="band">CONCRETE · v0.4 · BRUTALIST–POSTMODERN · ONE FILE · NO JS</div>
 
 # CONCRETE
 
@@ -52,15 +52,15 @@ A `.theme-dark` class on `<html>` opts into dark mode. There is no `prefers-colo
 <table class="table">
 <thead><tr><th>Token</th><th>Family</th><th>Use</th></tr></thead>
 <tbody>
-<tr><td><code>--font-body</code></td><td>Newsreader → Georgia → Times</td><td>paragraphs, blockquotes (default body)</td></tr>
-<tr><td><code>--font-display</code></td><td>Fraunces (variable) → Newsreader</td><td>display H1</td></tr>
+<tr><td><code>--font-body</code></td><td>Spectral → Iowan Old Style → Charter → Georgia</td><td>paragraphs, blockquotes (default body)</td></tr>
+<tr><td><code>--font-display</code></td><td>Fraunces (variable) → Iowan Old Style → Charter → Georgia</td><td>display H1</td></tr>
 <tr><td><code>--font-mono</code></td><td>JetBrains Mono → system mono</td><td>H2/H3, UI, labels, code</td></tr>
 </tbody></table>
 
 Body sets at **19px / 1.6** for comfortable serif reading. Mono carries the *UI* register; serif carries the *document* register. The mix is the postmodern joke.
 
-**Scale** (modular, 16px base):
-`--t-xs 12 · --t-sm 14 · --t-base 16 · --t-md 20 · --t-lg 28 · --t-xl 40 · --t-xxl 64 · --t-mega 104`
+**Scale** (modular, raised floor):
+`--t-xs 14 · --t-sm 16 · --t-base 18 · --t-md 22 · --t-lg 30 · --t-xl 44 · --t-xxl 68 · --t-mega 112`
 
 ### 2.2 Space (4px grid)
 
@@ -154,7 +154,7 @@ Active state physically depresses into its shadow. Press one.
 <span class="badge">badge</span>
 <span class="badge badge-accent">accent</span>
 <span class="badge badge-soft">soft</span>
-<span class="badge">v0.3</span>
+<span class="badge">v0.4</span>
 &nbsp;&nbsp;
 <span class="stamp">approved</span>
 </p>
@@ -191,6 +191,181 @@ Active state physically depresses into its shadow. Press one.
 <div class="band">SHIPPING IS A FEATURE · SHIPPING IS A FEATURE · SHIPPING IS A FEATURE</div>
 <div class="band band-accent">FOCUS · FOCUS · FOCUS · FOCUS · FOCUS · FOCUS · FOCUS · FOCUS</div>
 
+### 3.9 Field (form group)
+
+Wraps a label, control, and optional hint/error in one block.
+
+<div class="field">
+  <label for="d-email">Email address</label>
+  <input class="input" id="d-email" type="email" placeholder="you@example.com" />
+  <span class="hint">We'll only use this to send you the receipt.</span>
+</div>
+
+<div class="field">
+  <label for="d-bad">Project name</label>
+  <input class="input" id="d-bad" value="invalid name!" />
+  <span class="error">No special characters allowed.</span>
+</div>
+
+```html
+<div class="field">
+  <label for="x">Label</label>
+  <input class="input" id="x" />
+  <span class="hint">Help text.</span>
+</div>
+```
+
+### 3.10 Check & Radio
+
+Square. Native `<input>` styled in place; checked state fills with the accent.
+
+<p>
+<label class="check"><input type="checkbox" checked /> ship it on Friday</label><br>
+<label class="check"><input type="checkbox" /> ship it on Monday</label><br>
+<label class="check"><input type="checkbox" /> skip the all-hands</label>
+</p>
+<p>
+<label class="radio"><input type="radio" name="d-r" checked /> light theme</label>
+<label class="radio" style="margin-left:var(--s-4)"><input type="radio" name="d-r" /> dark theme</label>
+</p>
+
+```html
+<label class="check"><input type="checkbox"> option</label>
+<label class="radio"><input type="radio" name="g"> option</label>
+```
+
+### 3.11 List
+
+Native `<ul>` and `<ol>` are styled by default. Unordered lists get a short ochre bar in place of a disc; ordered lists get mono numbers with leading zeros.
+
+<div class="grid grid-2 mb-4">
+<div>
+<ul>
+<li>warm newsprint paper</li>
+<li>three sober accents</li>
+<li>hard shadows, no glow</li>
+<li>nested:
+  <ul>
+    <li>still a bar</li>
+    <li>no compounding indent</li>
+  </ul>
+</li>
+</ul>
+</div>
+<div>
+<ol>
+<li>read the spec</li>
+<li>copy the CSS file</li>
+<li>link it in your <code>&lt;head&gt;</code></li>
+<li>ship it</li>
+</ol>
+</div>
+</div>
+
+### 3.12 Details (accordion)
+
+Native `<details>` with a plus/minus marker. No JS.
+
+<details>
+<summary>What does brutalist mean here?</summary>
+<div class="details-body">
+It means the structure of the page is the decoration: borders, hard shadows, raw type. Not a 1970s concrete building. Closer to a well-printed manual than a poster.
+</div>
+</details>
+
+<details open>
+<summary>Why no border-radius?</summary>
+<div class="details-body">
+Round corners blur the edge of every component. Sharp corners read as <em>made of something</em>. Once you start rounding, you have to round everything, and you end up with the same softness as every other system. Hard corners are the cheapest, loudest commitment to a point of view.
+</div>
+</details>
+
+```html
+<details>
+  <summary>Heading</summary>
+  <div class="details-body">…</div>
+</details>
+```
+
+### 3.13 Hero
+
+Page-level title block. Big serif headline, lede paragraph, optional meta strip.
+
+<section class="hero">
+  <h1 style="font-size:clamp(2.5rem,7vw,5rem)">Concrete pours.</h1>
+  <p class="lede">A design system that looks like a document on purpose. One stylesheet, no build step, ten components.</p>
+  <p class="meta">v0.4 · maintained by Arrow · MIT-ish, take it</p>
+</section>
+
+### 3.14 Footer
+
+A page-bottom strip with mono links and meta, separated by a fat rule.
+
+<footer class="footer">
+  <span>© Arrow · 2026</span>
+  <span><a href="https://github.com/arrow501/concrete">github</a> · <a href="https://concrete.pages.dev">site</a></span>
+</footer>
+
+### 3.15 Pagination
+
+<nav class="pagination">
+  <a href="#">‹ prev</a>
+  <a href="#">1</a>
+  <a href="#">2</a>
+  <span aria-current="page">3</span>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">next ›</a>
+</nav>
+
+```html
+<nav class="pagination">
+  <a href="#">‹ prev</a>
+  <a href="#">1</a>
+  <span aria-current="page">2</span>
+  <a href="#">3</a>
+  <a href="#">next ›</a>
+</nav>
+```
+
+### 3.16 Breadcrumb
+
+<nav class="breadcrumb">
+  <a href="#">home</a>
+  <a href="#">design</a>
+  <a href="#">systems</a>
+  <span aria-current="page">concrete</span>
+</nav>
+
+### 3.17 Kbd
+
+Press <kbd>⌘</kbd> + <kbd>K</kbd> to open the command palette. Press <kbd>Esc</kbd> to close.
+
+### 3.18 Figure (image with label + download)
+
+Every image gets a label strip beneath it. Left side describes the figure; right side is a download link.
+
+<figure>
+  <img alt="ochre swatch" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20800%20240%27%3E%3Crect%20width%3D%27800%27%20height%3D%27240%27%20fill%3D%27%239a6a14%27%2F%3E%3C%2Fsvg%3E" />
+  <figcaption>
+    <span><span class="fig-label">Fig 01.</span> Ochre primary accent <span class="fig-meta">#9a6a14 · 800×240</span></span>
+    <a class="fig-download" href="#" download>download</a>
+  </figcaption>
+</figure>
+
+```html
+<figure>
+  <img alt="…" src="…" />
+  <figcaption>
+    <span>
+      <span class="fig-label">Fig 01.</span> Caption text
+      <span class="fig-meta">120 KB · PNG</span>
+    </span>
+    <a class="fig-download" href="…" download>download</a>
+  </figcaption>
+</figure>
+```
+
 ## 4 · Layout language
 
 - Container: `.container` (max 1200px).
@@ -211,7 +386,7 @@ Active state physically depresses into its shadow. Press one.
 
 - H1 is **Fraunces display**, very large, tight leading (`0.88`), slight WONK + SOFT axes for character.
 - H2/H3 are **mono, uppercase**. H2 has a small ochre square preceding it as an editor's mark.
-- Body is **Newsreader at 17px**. Never below 15px for paragraphs.
+- Body is **Spectral at 19px**. Never below 16px for paragraphs.
 - Line length capped at `68ch`. Brutalism is not unreadable.
 - Drop-cap via `.dropcap`: the first letter renders in ochre, 5em, serif.
 
@@ -261,9 +436,11 @@ The MD file is the source of truth and the live showcase.
 
 ## 10 · Versioning
 
-`v0.3`. Palette refit to ochre + deep teal + oxblood (was vermilion/yellow/pink).
-Body type now Newsreader; display now Fraunces. Light is default; dark is opt-in.
+`v0.4`. Adds form fields, check/radio, lists, accordion (`details`),
+hero, footer, pagination, breadcrumb, kbd, and figure.
 Tokens are stable; component class names will not break in 0.x patches.
+
+`v0.3`. Palette refit to ochre + deep teal + oxblood. Body type Spectral; display Fraunces. Light default; dark opt-in via `.theme-dark`.
 
 <hr class="rule">
 
@@ -273,7 +450,7 @@ Tokens are stable; component class names will not break in 0.x patches.
     <p class="serif" style="font-size:var(--t-lg);line-height:1.15">"A building should look like what it is."<br>And so should a website.</p>
   </div>
   <div class="right">
-    <span class="stamp">v0.3</span>
+    <span class="stamp">v0.4</span>
   </div>
 </div>
 
