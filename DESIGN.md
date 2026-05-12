@@ -370,7 +370,7 @@ corner number, `.plate-pin` for callouts, `.plate-legend` for the key.
       <a class="plate-dl" href="https://upload.wikimedia.org/wikipedia/commons/2/2f/Wild_Rabbit_Illustration.png" download="rabbit.png">download</a>
     </div>
   </div>
-  <div class="plate plate-3x4">
+  <div class="plate plate-3x4 plate-auto">
     <div class="plate-body">
       <img alt="rabbit standing on hind legs (LCCN)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Rabbit_standing_on_hind_legs_LCCN2004674687.tiff/lossy-page1-960px-Rabbit_standing_on_hind_legs_LCCN2004674687.tiff.jpg" loading="lazy" />
     </div>
@@ -473,6 +473,8 @@ That last row shows the body can hold any element — here it's a flat
 | `.plate-16x9`   | force 16:9                                              |
 | `.plate-cover`  | with a ratio: crop to fill instead of contain           |
 | `.plate-row`    | flex-wrap row of plates                                 |
+| `.plate-row-match` | row variant: plates stretch to equal height          |
+| `.plate-auto`   | width derives from ratio'd body height (use inside `.plate-row-match`) |
 | `.plate-stack`  | vertical stack of plates                                |
 | `.plate-tag`    | corner number/label sitting over the top-left edge      |
 | `.plate-pin`    | numbered callout marker (`style="top:…;left:…"`)        |

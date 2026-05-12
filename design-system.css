@@ -666,17 +666,17 @@ kbd {
    body hosts <img>, <svg>, <canvas>, <video>, or arbitrary content. */
 .plate {
   display: inline-block;
-  width: 384px;                    /* .plate-md (default) */
+  width: 320px;                    /* .plate-md (default) — small-web, instruction-manual scale */
   max-width: 100%;
   margin: var(--s-3) 0;
   vertical-align: top;
   position: relative;
 }
-.plate-xs { width: 192px; }
-.plate-sm { width: 256px; }
-.plate-md { width: 384px; }
-.plate-lg { width: 480px; }
-.plate-xl { width: 640px; }
+.plate-xs { width: 160px; }
+.plate-sm { width: 224px; }
+.plate-md { width: 320px; }
+.plate-lg { width: 400px; }
+.plate-xl { width: 512px; }
 
 .plate-body {
   position: relative;
@@ -800,17 +800,17 @@ kbd {
 .plate-stack > .plate { margin: 0; }
 
 /* .plate-row-match — plates stretch to the tallest sibling's height.
-   When a ratio class is set on the plate (e.g. .plate-3x4), the body's
-   aspect-ratio is applied to the body itself so the plate's width
-   follows from the shared height. The inner visual fills with cover. */
-.plate-row-match { align-items: stretch; }
+   Plates keep their size class (e.g. .plate-md stays 320). Add .plate-auto
+   to a ratio-locked plate when you want its width derived from the shared
+   row height instead of a fixed size. */
+.plate-row-match { align-items: stretch; flex-wrap: nowrap; }
 .plate-row-match > .plate {
   display: flex;
   flex-direction: column;
-  width: auto;            /* width derives from the ratio'd body */
   max-width: 100%;
 }
 .plate-row-match > .plate > .plate-body { flex: 1 1 auto; }
+.plate-auto { width: auto; }
 .plate-row-match > .plate.plate-1x1  > .plate-body { aspect-ratio: 1 / 1; }
 .plate-row-match > .plate.plate-4x3  > .plate-body { aspect-ratio: 4 / 3; }
 .plate-row-match > .plate.plate-3x4  > .plate-body { aspect-ratio: 3 / 4; }
