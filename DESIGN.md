@@ -4,7 +4,7 @@
 
 <p class="dropcap">
 A brutalist–postmodern design system. One CSS file. Zero JavaScript. Zero build step.
-This document <em>is</em> the showcase — every component below is rendered live with the
+This document <em>is</em> the showcase. Every component below is rendered live with the
 same stylesheet it documents. <span class="invert">Read it. See it.</span>
 </p>
 
@@ -23,7 +23,7 @@ same stylesheet it documents. <span class="invert">Read it. See it.</span>
 
 Three rules. If you break them, break them loudly:
 
-1. **Structure is the decoration.** Borders, rules, and grids are not "chrome" — they *are* the look.
+1. **Structure is the decoration.** Borders, rules, and grids are not "chrome". They *are* the look.
 2. **No round corners. Ever.** Radius is `0`.
 3. **Color is a voltage, not a wash.** Paper + ink, then *one* sober accent per screen.
 
@@ -45,7 +45,7 @@ Numbers and dates typed plainly. Mistakes (a strikethrough, a margin note) are w
 ## 2 · Tokens
 
 All tokens are CSS custom properties on `:root`. The default is **light**.
-A `.theme-dark` class on `<html>` opts into dark mode — no `prefers-color-scheme` auto-flip.
+A `.theme-dark` class on `<html>` opts into dark mode. There is no `prefers-color-scheme` auto-flip.
 
 ### 2.1 Type
 
@@ -57,12 +57,12 @@ A `.theme-dark` class on `<html>` opts into dark mode — no `prefers-color-sche
 <tr><td><code>--font-mono</code></td><td>JetBrains Mono → system mono</td><td>H2/H3, UI, labels, code</td></tr>
 </tbody></table>
 
-Body sets at **17px / 1.6** — comfortable serif reading. Mono carries the *UI* register; serif carries the *document* register. The mix is the postmodern joke.
+Body sets at **19px / 1.6** for comfortable serif reading. Mono carries the *UI* register; serif carries the *document* register. The mix is the postmodern joke.
 
 **Scale** (modular, 16px base):
 `--t-xs 12 · --t-sm 14 · --t-base 16 · --t-md 20 · --t-lg 28 · --t-xl 40 · --t-xxl 64 · --t-mega 104`
 
-### 2.2 Space — 4px grid
+### 2.2 Space (4px grid)
 
 `--s-1 4 · --s-2 8 · --s-3 12 · --s-4 16 · --s-5 24 · --s-6 32 · --s-7 48 · --s-8 64 · --s-9 96`
 
@@ -71,7 +71,7 @@ Never use a value off-grid. If you need 14px, use 12 or 16.<br>
 <strong>The grid is the discipline.</strong>
 </div>
 
-### 2.3 Color — paper, ink, three sober accents
+### 2.3 Color: paper, ink, three sober accents
 
 <div class="grid grid-2 mb-4">
   <div class="swatch">
@@ -100,7 +100,7 @@ Never use a value off-grid. If you need 14px, use 12 or 16.<br>
   </div>
 </div>
 
-<p><strong>Fixed-contrast tokens.</strong> <code>--on-accent</code> stays dark in both themes — voltage backgrounds can never become low-contrast. Use it on any colored fill.</p>
+<p><strong>Fixed-contrast tokens.</strong> <code>--on-accent</code> stays dark in both themes, so voltage backgrounds can never become low-contrast. Use it on any colored fill.</p>
 
 <p><strong>Rule:</strong> one sober accent per view. Mixing two = a deliberate, considered act.</p>
 
@@ -108,11 +108,11 @@ Never use a value off-grid. If you need 14px, use 12 or 16.<br>
 
 - `--border-w: 2px` · `--border-w-fat: 6px`
 - `--radius: 0` &nbsp; *(never override)*
-- `--shadow-hard: 6px 6px 0 0 ink` — a stamp, not a glow
+- `--shadow-hard: 6px 6px 0 0 ink` (a stamp, not a glow)
 
 ## 3 · Components
 
-### 3.1 Box — the workhorse
+### 3.1 Box: the workhorse
 
 <div class="grid grid-2 mb-4">
   <div class="box">.box</div>
@@ -138,7 +138,7 @@ Never use a value off-grid. If you need 14px, use 12 or 16.<br>
 <a class="btn btn-ghost">.btn-ghost</a>
 </p>
 
-Active state physically depresses into its shadow — press one.
+Active state physically depresses into its shadow. Press one.
 
 ### 3.3 Input
 
@@ -171,7 +171,7 @@ Active state physically depresses into its shadow — press one.
 
 ### 3.6 Callouts
 
-<div class="callout">Default callout. Deep-teal side bar — the cool, civic note.</div>
+<div class="callout">Default callout. Deep-teal side bar, the cool civic note.</div>
 <div class="callout callout-warn"><strong>Warning.</strong> Oxblood bar. Use for destructive moves.</div>
 <div class="callout callout-yay"><strong>Note.</strong> Ochre bar. Use for the good news.</div>
 
@@ -195,9 +195,9 @@ Active state physically depresses into its shadow — press one.
 
 - Container: `.container` (max 1200px).
 - Grids: `.grid.grid-2 / grid-3 / grid-12`.
-- **Asymmetry helpers** — the postmodern handshake:
-  - `.offset-up` / `.offset-down` — translate ±12px
-  - `.tilt-l` / `.tilt-r` — rotate ±1.2°
+- **Asymmetry helpers** (the postmodern handshake):
+  - `.offset-up` / `.offset-down`: translate ±12px
+  - `.tilt-l` / `.tilt-r`: rotate ±1.2°
 
 <div class="grid grid-3 mb-4">
   <div class="box box-shadow tilt-l">.tilt-l</div>
@@ -213,7 +213,7 @@ Active state physically depresses into its shadow — press one.
 - H2/H3 are **mono, uppercase**. H2 has a small ochre square preceding it as an editor's mark.
 - Body is **Newsreader at 17px**. Never below 15px for paragraphs.
 - Line length capped at `68ch`. Brutalism is not unreadable.
-- Drop-cap via `.dropcap` — the first letter renders in ochre, 5em, serif.
+- Drop-cap via `.dropcap`: the first letter renders in ochre, 5em, serif.
 
 ## 6 · Motion
 
@@ -222,12 +222,12 @@ Default: **none**. Brutalist UI is immediate.
 Allowed:
 
 - Button `:active` depresses by 4px (built in).
-- `.hover-jitter` — 220ms 3-step jitter. <span class="badge hover-jitter">hover me</span> One per page, max.
+- `.hover-jitter`: 220ms 3-step jitter. <span class="badge hover-jitter">hover me</span> One per page, max.
 - Respect `prefers-reduced-motion`.
 
 ## 7 · Accessibility
 
-- Contrast: ink-on-paper is **>15:1**. Accents are decorative — never rely on them alone for meaning.
+- Contrast: ink-on-paper is **>15:1**. Accents are decorative; never rely on them alone for meaning.
 - Focus states are **visible**: a 6px ochre offset shadow + ochre border. Do not remove outlines.
 - All interactive components keyboard-reachable with no JS.
 - Dark mode is **opt-in** via `<html class="theme-dark">`. The toggle in this page persists to `localStorage`.
@@ -255,13 +255,13 @@ Do **not**:
 
 That's the install. There is no step two.
 
-To render *this document* with the system, open `index.html` — it fetches `DESIGN.md`,
+To render *this document* with the system, open `index.html`. It fetches `DESIGN.md`,
 parses it with [marked](https://marked.js.org), and applies `design-system.css`.
 The MD file is the source of truth and the live showcase.
 
 ## 10 · Versioning
 
-`v0.3` — palette refit: ochre + deep teal + oxblood (was vermilion/yellow/pink).
+`v0.3`. Palette refit to ochre + deep teal + oxblood (was vermilion/yellow/pink).
 Body type now Newsreader; display now Fraunces. Light is default; dark is opt-in.
 Tokens are stable; component class names will not break in 0.x patches.
 
@@ -270,7 +270,7 @@ Tokens are stable; component class names will not break in 0.x patches.
 <div class="grid grid-2 mt-6 mb-6">
   <div>
     <p class="mono upper muted">end of document</p>
-    <p class="serif" style="font-size:var(--t-lg);line-height:1.15">"A building should look like what it is."<br>— and so should a website.</p>
+    <p class="serif" style="font-size:var(--t-lg);line-height:1.15">"A building should look like what it is."<br>And so should a website.</p>
   </div>
   <div class="right">
     <span class="stamp">v0.3</span>

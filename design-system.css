@@ -1,5 +1,5 @@
 /* =========================================================
-   CONCRETE — a brutalist-postmodern design system
+   CONCRETE: a brutalist-postmodern design system
    v0.3  ·  zero dependencies  ·  one file
    palette: warm newsprint + ochre + deep teal + oxblood
             (civic-institutional, no fluorescents)
@@ -12,41 +12,41 @@
      body    → Spectral (Production Type, characterful screen serif)
      display → Fraunces (expressive variable serif for H1)
      mono    → JetBrains Mono (UI, labels, code, H2/H3)
-     fallbacks: nice system serifs before generic — no Times. */
+     fallbacks: nice system serifs before generic. No Times. */
   --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-body:    "Spectral", "Iowan Old Style", "Charter", "Sitka Text", Georgia, serif;
   --font-display: "Fraunces", "Iowan Old Style", "Charter", Georgia, serif;
   --font-serif:   var(--font-body); /* legacy alias */
   --font-sans:    -apple-system, "Helvetica Neue", Arial, sans-serif;
 
-  /* scale — modular, raised floor (no sub-14px text anywhere) */
-  --t-xs: 0.875rem;   /* 14px — was 12 */
-  --t-sm: 1rem;       /* 16px — was 14 */
-  --t-base: 1.125rem; /* 18px — was 16 */
-  --t-md: 1.375rem;   /* 22px — was 20 */
-  --t-lg: 1.875rem;   /* 30px — was 28 */
-  --t-xl: 2.75rem;    /* 44px — was 40 */
-  --t-xxl: 4.25rem;   /* 68px — was 64 */
-  --t-mega: 7rem;     /* 112px — was 104 */
+  /* scale: modular, raised floor (no sub-14px text anywhere) */
+  --t-xs: 0.875rem;   /* 14px (was 12) */
+  --t-sm: 1rem;       /* 16px (was 14) */
+  --t-base: 1.125rem; /* 18px (was 16) */
+  --t-md: 1.375rem;   /* 22px (was 20) */
+  --t-lg: 1.875rem;   /* 30px (was 28) */
+  --t-xl: 2.75rem;    /* 44px (was 40) */
+  --t-xxl: 4.25rem;   /* 68px (was 64) */
+  --t-mega: 7rem;     /* 112px (was 104) */
 
-  /* space — 4px grid */
+  /* space: 4px grid */
   --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
   --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
 
-  /* surface — warm newsprint over inkstone */
+  /* surface: warm newsprint over inkstone */
   --ink:     #141210;             /* near-black, slightly warm */
   --paper:   #f1ece1;             /* warm newsprint */
-  --paper-2: #d9d0bb;             /* recessed surface — deeper for clear separation */
+  --paper-2: #d9d0bb;             /* recessed surface (deeper for clear separation) */
   --rule:    #141210;
 
-  /* voltage — civic/institutional palette
+  /* voltage: civic/institutional palette.
      warm + cool + alert. nothing fluorescent, nothing candy. */
-  --accent:        #9a6a14;       /* ochre · primary accent — slightly deeper for fill use */
+  --accent:        #9a6a14;       /* ochre · primary accent (slightly deeper for fill use) */
   --accent-soft:   #b88a26;       /* mid ochre · for soft fills (deeper than before) */
   --link:          #1d4f4a;       /* deep teal · links, callouts (library-card civic) */
   --alert:         #7a2a23;       /* oxblood · stamps, warnings (dried, not fire-engine) */
 
-  /* fixed contrast — these NEVER flip with theme.
+  /* fixed contrast: these NEVER flip with theme.
      use --on-accent on any voltage background. */
   --on-accent: #141210;           /* always-dark text on bright accents */
   --on-alert:  #f1ece1;           /* always-light text on alert red */
@@ -72,7 +72,7 @@
   --accent-soft: #e3b357;
   --link:        #6ab4ac;         /* lifted deep teal → aqua */
   --alert:       #b8443a;         /* lifted oxblood */
-  /* --on-accent / --on-alert intentionally NOT overridden — they stay fixed */
+  /* --on-accent / --on-alert intentionally NOT overridden; they stay fixed */
 }
 
 /* ---------- 2. RESET (light) --------------------------- */
@@ -81,7 +81,7 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 19px;            /* body reads at 19 — raised floor for comfortable serif body */
+  font-size: 19px;            /* body reads at 19 (raised floor for comfortable serif body) */
   line-height: 1.6;
   color: var(--ink);
   background: var(--paper);
@@ -112,7 +112,7 @@ h2, .h2 {
   padding-bottom: var(--s-2);
   position: relative;
 }
-/* editor's mark — small ochre square preceding every H2 */
+/* editor's mark: small ochre square preceding every H2 */
 h2::before {
   content: "";
   display: inline-block;
@@ -129,7 +129,7 @@ h3, .h3 {
 }
 p { margin: 0 0 var(--s-4); max-width: 68ch; }
 
-/* mono-body override — for paragraphs that need to feel like terminal text */
+/* mono-body override: for paragraphs that need to feel like terminal text */
 .p-mono { font-family: var(--font-mono); font-size: var(--t-base); }
 
 a {

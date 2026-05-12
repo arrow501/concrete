@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="design-system.css">
 <style>
-  /* shell-only — everything else from the system */
+  /* shell-only. everything else comes from the system */
   #doc { opacity: 0; transition: opacity 160ms ease; }
   #doc.ready { opacity: 1; }
   #loading { padding: var(--s-6) var(--s-5); font-family: var(--font-mono); }
@@ -35,7 +35,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-  // Theme — light is default; .theme-dark opts in. Persists via localStorage.
+  // Theme: light is default; .theme-dark opts in. Persists via localStorage.
   (function () {
     const root = document.documentElement;
     const label = document.getElementById('themeLabel');
@@ -67,7 +67,7 @@
     } catch (e) {
       loading.innerHTML =
         '<div class="callout callout-warn"><strong>Could not load DESIGN.md.</strong><br>' +
-        'Serve this folder over HTTP (e.g. <code>python -m http.server</code>) — ' +
+        'Serve this folder over HTTP (e.g. <code>python -m http.server</code>). ' +
         'browsers block <code>fetch()</code> on <code>file://</code>.<br><br>' +
         '<span class="muted">' + e.message + '</span></div>';
     }

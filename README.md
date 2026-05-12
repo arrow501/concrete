@@ -2,9 +2,9 @@
 
 A brutalist–postmodern design system. One CSS file, one self-describing Markdown spec, one HTML shell that renders the spec live.
 
-- `design-system.css` — tokens + components (zero dependencies)
-- `DESIGN.md` — the spec, with inline live demos
-- `index.html` — fetches the MD and renders it through the system's own CSS
+- `design-system.css`: tokens + components (zero dependencies)
+- `DESIGN.md`: the spec, with inline live demos
+- `index.html`: fetches the MD and renders it through the system's own CSS
 
 ## Use
 
@@ -18,7 +18,7 @@ A brutalist–postmodern design system. One CSS file, one self-describing Markdo
 python -m http.server 8000
 ```
 
-Then open <http://localhost:8000>. The page renders `DESIGN.md` through `design-system.css` — the spec is the showcase.
+Then open <http://localhost:8000>. The page renders `DESIGN.md` through `design-system.css`. The spec is the showcase.
 
 ## Theme
 
