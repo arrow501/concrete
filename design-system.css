@@ -634,32 +634,29 @@ kbd {
   vertical-align: 1px;
 }
 
-/* 5.20 FIGURE / FIGCAPTION (label + download row beneath every image) */
-figure { margin: var(--s-5) 0; }
+/* 5.20 FIGURE / FIGCAPTION (lowkey frame + label + underlined download) */
+figure { margin: var(--s-4) 0; }
 figure img,
 figure video {
-  border: var(--border-w) solid var(--rule);
-  width: 100%;
   display: block;
+  width: 100%;
+  border: 1px solid var(--rule);   /* lowkey hairline frame */
+  padding: 4px;                    /* small mat between image and frame */
+  background: var(--paper);
 }
 figcaption {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: var(--s-4);
-  margin-top: 0;
-  padding: var(--s-2) var(--s-3);
-  border: var(--border-w) solid var(--rule);
-  border-top: 0;
-  background: var(--paper-2);
+  margin-top: var(--s-2);
+  padding: 0 4px;                  /* align with the image mat */
   font-family: var(--font-mono);
   font-size: var(--t-xs);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-figcaption .fig-label {
-  font-weight: 700;
-}
+figcaption .fig-label { font-weight: 700; }
 figcaption .fig-meta {
   opacity: 0.6;
   font-weight: 400;
@@ -667,24 +664,18 @@ figcaption .fig-meta {
 }
 figcaption .fig-download {
   color: var(--ink);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
   font-weight: 700;
-  padding: 2px 6px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
   white-space: nowrap;
   flex-shrink: 0;
-}
-figcaption .fig-download::before {
-  content: "↓";
-  margin-right: 4px;
-  color: var(--accent);
 }
 figcaption .fig-download:hover {
   background: var(--accent);
   color: var(--on-accent);
+  text-decoration: none;
 }
-figcaption .fig-download:hover::before { color: var(--on-accent); }
 
 /* ---------- 6. UTIL ------------------------------------ */
 .mono   { font-family: var(--font-mono); }

@@ -353,13 +353,13 @@ Press <kbd>⌘</kbd> + <kbd>K</kbd> to open the command palette. Press <kbd>Esc<
 
 ### 3.18 Figure (image with label + download)
 
-Every image gets a label strip beneath it. Left side describes the figure; right side is a download link.
+Lowkey hairline frame with a small mat. Underneath: a label on the left, an underlined download link on the right. No heavy border, no busy caption bar — the image is the loud thing.
 
 <figure>
-  <img alt="ochre swatch" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20800%20240%27%3E%3Crect%20width%3D%27800%27%20height%3D%27240%27%20fill%3D%27%239a6a14%27%2F%3E%3C%2Fsvg%3E" />
+  <img alt="a rabbit" src="https://loremflickr.com/1200/600/rabbit" loading="lazy" />
   <figcaption>
-    <span><span class="fig-label">Fig 01.</span> Ochre primary accent <span class="fig-meta">#9a6a14 · 800×240</span></span>
-    <a class="fig-download" href="#" download>download</a>
+    <span><span class="fig-label">Fig 01.</span> A rabbit <span class="fig-meta">JPG · 1200×600 · loremflickr</span></span>
+    <a class="fig-download" href="https://loremflickr.com/1200/600/rabbit" download="rabbit.jpg">download</a>
   </figcaption>
 </figure>
 
