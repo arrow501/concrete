@@ -1,4 +1,4 @@
-<div class="band" id="top">CONCRETE · v0.4 · BRUTALIST–POSTMODERN · ONE FILE · NO JS</div>
+<div class="band" id="top">CONCRETE · v0.5 · BRUTALIST–POSTMODERN · ONE FILE · NO JS</div>
 
 # CONCRETE
 
@@ -154,7 +154,7 @@ Active state physically depresses into its shadow. Press one.
 <span class="badge">badge</span>
 <span class="badge badge-accent">accent</span>
 <span class="badge badge-soft">soft</span>
-<span class="badge">v0.4</span>
+<span class="badge">v0.5</span>
 &nbsp;&nbsp;
 <span class="stamp">approved</span>
 </p>
@@ -294,7 +294,7 @@ Page-level title block. Big serif headline, lede paragraph, optional meta strip.
 <section class="hero">
   <h1 style="font-size:clamp(2.5rem,7vw,5rem)">Concrete pours.</h1>
   <p class="lede">A design system that looks like a document on purpose. One stylesheet, no build step, ten components.</p>
-  <p class="meta">v0.4 · maintained by Arrow · MIT-ish, take it</p>
+  <p class="meta">v0.5 · maintained by Arrow · MIT-ish, take it</p>
 </section>
 
 ### 3.14 Footer
@@ -351,30 +351,132 @@ For lists that should anchor mid-page (not the entire viewport), put the
 
 Press <kbd>⌘</kbd> + <kbd>K</kbd> to open the command palette. Press <kbd>Esc</kbd> to close.
 
-### 3.18 Figure (image with label + download)
+### 3.18 Plate
 
-Lowkey hairline frame with a small mat. Underneath: a label on the left, an underlined download link on the right. No heavy border, no busy caption bar — the image is the loud thing.
+The unit that gets a figure number. A `.plate` holds an image, an inline
+SVG, a canvas, a swatch, or any visual. Discrete widths snap to the grid;
+ratio stays natural unless you ask for one. Add a `.plate-tag` for the
+corner number, `.plate-pin` for callouts, `.plate-legend` for the key.
 
-<figure>
-  <img alt="a rabbit" src="https://loremflickr.com/1200/600/rabbit" loading="lazy" />
-  <figcaption>
-    <span><span class="fig-label">Fig 01.</span> A rabbit <span class="fig-meta">JPG · 1200×600 · loremflickr</span></span>
-    <a class="fig-download" href="https://loremflickr.com/1200/600/rabbit" download="rabbit.jpg">download</a>
-  </figcaption>
-</figure>
+**Two photographic plates.** Left: illustration at natural ratio. Right: photo locked to 4:3 with `.plate-cover`.
+
+<div class="plate-row mb-4">
+  <div class="plate plate-md">
+    <div class="plate-body">
+      <img alt="wild rabbit illustration" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Wild_Rabbit_Illustration.png/960px-Wild_Rabbit_Illustration.png" loading="lazy" />
+    </div>
+    <div class="plate-cap">
+      <span class="plate-url"><strong>upload.wikimedia.org</strong><span>/…/Wild_Rabbit_Illustration.png</span></span>
+      <a class="plate-dl" href="https://upload.wikimedia.org/wikipedia/commons/2/2f/Wild_Rabbit_Illustration.png" download="rabbit.png">download</a>
+    </div>
+  </div>
+  <div class="plate plate-md plate-4x3 plate-cover">
+    <div class="plate-body">
+      <img alt="rabbit standing on hind legs (LCCN)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Rabbit_standing_on_hind_legs_LCCN2004674687.tiff/lossy-page1-960px-Rabbit_standing_on_hind_legs_LCCN2004674687.tiff.jpg" loading="lazy" />
+    </div>
+    <div class="plate-cap">
+      <span class="plate-url"><strong>upload.wikimedia.org</strong><span>/…/Rabbit_standing_on_hind_legs.jpg</span></span>
+      <a class="plate-dl" href="https://upload.wikimedia.org/wikipedia/commons/5/5e/Rabbit_standing_on_hind_legs_LCCN2004674687.tiff" download="rabbit-hind-legs.tiff">download</a>
+    </div>
+  </div>
+</div>
+
+**An SVG diagram with callout pins + legend.** The body hosts an inline
+`<svg>`; pins are placed on top with inline `top` / `left`. Same frame, same caption rules.
+
+<div class="plate-row mb-4">
+  <div class="plate plate-md">
+    <span class="plate-tag">Fig 01</span>
+    <div class="plate-body">
+      <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="280" fill="var(--paper)" />
+        <g stroke="var(--ink)" stroke-width="1.5" fill="none">
+          <rect x="60" y="60" width="280" height="160" />
+          <line x1="60" y1="60" x2="200" y2="20" />
+          <line x1="340" y1="60" x2="200" y2="20" />
+          <line x1="200" y1="20" x2="200" y2="100" />
+          <circle cx="200" cy="140" r="32" />
+          <line x1="60" y1="220" x2="340" y2="220" />
+        </g>
+      </svg>
+      <span class="plate-pin" style="top:14%;left:50%">1</span>
+      <span class="plate-pin" style="top:50%;left:50%">2</span>
+      <span class="plate-pin" style="top:79%;left:20%">3</span>
+    </div>
+    <div class="plate-cap">
+      <span class="plate-url"><strong>concrete.pages.dev</strong><span>/assets/diagram.svg</span></span>
+      <a class="plate-dl" href="#" download>download</a>
+    </div>
+  </div>
+  <div class="plate-legend">
+<ol>
+<li>roof apex — point of pin 1</li>
+<li>central node — the bit that does the work</li>
+<li>foundation rule — runs the length of the box</li>
+</ol>
+  </div>
+</div>
+
+**A row of small plates.** `.plate-row` wraps on narrow screens; each plate keeps its discrete width.
+
+<div class="plate-row mb-4">
+  <div class="plate plate-sm plate-1x1">
+    <span class="plate-tag">01</span>
+    <div class="plate-body"><div class="plate-swatch" style="background:var(--accent)"></div></div>
+    <div class="plate-cap"><span class="plate-url"><strong>--accent</strong><span> · #9a6a14</span></span></div>
+  </div>
+  <div class="plate plate-sm plate-1x1">
+    <span class="plate-tag">02</span>
+    <div class="plate-body"><div class="plate-swatch" style="background:var(--link)"></div></div>
+    <div class="plate-cap"><span class="plate-url"><strong>--link</strong><span> · #1d4f4a</span></span></div>
+  </div>
+  <div class="plate plate-sm plate-1x1">
+    <span class="plate-tag">03</span>
+    <div class="plate-body"><div class="plate-swatch" style="background:var(--alert)"></div></div>
+    <div class="plate-cap"><span class="plate-url"><strong>--alert</strong><span> · #7a2a23</span></span></div>
+  </div>
+</div>
+
+That last row shows the body can hold any element — here it's a flat
+`<div class="plate-swatch">` colored by inline style. No image needed.
+
+#### Anatomy
 
 ```html
-<figure>
-  <img alt="…" src="…" />
-  <figcaption>
-    <span>
-      <span class="fig-label">Fig 01.</span> Caption text
-      <span class="fig-meta">120 KB · PNG</span>
+<div class="plate plate-md">
+  <span class="plate-tag">Fig 01</span>          <!-- optional corner tag -->
+  <div class="plate-body">
+    <img alt="…" src="…" />                       <!-- or <svg>, <canvas>, <video>, … -->
+    <span class="plate-pin" style="top:30%;left:50%">1</span>
+  </div>
+  <div class="plate-cap">
+    <span class="plate-url">
+      <strong>domain.com</strong><span>/path/to/file.jpg</span>
     </span>
-    <a class="fig-download" href="…" download>download</a>
-  </figcaption>
-</figure>
+    <a class="plate-dl" href="…" download>download</a>
+  </div>
+</div>
 ```
+
+#### Modifiers
+
+| class           | effect                                                  |
+|-----------------|---------------------------------------------------------|
+| `.plate-xs`     | 192 px wide                                             |
+| `.plate-sm`     | 256 px wide                                             |
+| `.plate-md`     | 384 px wide (default)                                   |
+| `.plate-lg`     | 480 px wide                                             |
+| `.plate-xl`     | 640 px wide                                             |
+| `.plate-1x1`    | force 1:1                                               |
+| `.plate-4x3`    | force 4:3                                               |
+| `.plate-3x2`    | force 3:2                                               |
+| `.plate-16x9`   | force 16:9                                              |
+| `.plate-cover`  | with a ratio: crop to fill instead of contain           |
+| `.plate-row`    | flex-wrap row of plates                                 |
+| `.plate-stack`  | vertical stack of plates                                |
+| `.plate-tag`    | corner number/label sitting over the top-left edge      |
+| `.plate-pin`    | numbered callout marker (`style="top:…;left:…"`)        |
+| `.plate-legend` | numbered key beside a tagged plate                      |
 
 ## 4 · Layout language
 
@@ -446,6 +548,11 @@ The MD file is the source of truth and the live showcase.
 
 ## 10 · Versioning
 
+`v0.5`. Renames `.img` → `.plate`: a modular frame for images, SVG drawings,
+canvases, swatches. Adds discrete sizes (`xs`/`sm`/`md`/`lg`/`xl`), opt-in
+ratios, `.plate-tag` corner labels, `.plate-pin` callout markers,
+`.plate-legend` numbered keys, and `.plate-row`/`.plate-stack` composition.
+
 `v0.4`. Adds form fields, check/radio, lists, accordion (`details`),
 hero, footer, pagination, breadcrumb, kbd, and figure.
 Tokens are stable; component class names will not break in 0.x patches.
@@ -460,7 +567,7 @@ Tokens are stable; component class names will not break in 0.x patches.
     <p class="serif" style="font-size:var(--t-lg);line-height:1.15">"A building should look like what it is."<br>And so should a website.</p>
   </div>
   <div class="right">
-    <span class="stamp">v0.4</span>
+    <span class="stamp">v0.5</span>
   </div>
 </div>
 

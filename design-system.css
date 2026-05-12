@@ -1,6 +1,6 @@
 /* =========================================================
    CONCRETE: a brutalist-postmodern design system
-   v0.4  ·  zero dependencies  ·  one file
+   v0.5  ·  zero dependencies  ·  one file
    palette: warm newsprint + ochre + deep teal + oxblood
             (civic-institutional, no fluorescents)
    theme:   light by default · .theme-dark opts in
@@ -237,7 +237,10 @@ hr.rule-thin { border: 0; border-top: 1px solid var(--rule); margin: var(--s-5) 
   text-decoration: none;
   cursor: pointer;
   transition: transform 80ms ease, box-shadow 80ms ease, background 80ms ease;
+  /* room for the 6px hard shadow when buttons sit next to each other */
+  margin: 0 6px 6px 0;
 }
+.btn-ghost { margin: 0; }                  /* no shadow → no shadow margin */
 .btn:hover      { background: var(--accent); color: var(--on-accent); }
 .btn:active     { transform: translate(4px, 4px); box-shadow: 2px 2px 0 0 var(--ink); }
 .btn-primary    { background: var(--ink); color: var(--paper); }
@@ -634,47 +637,169 @@ kbd {
   vertical-align: 1px;
 }
 
-/* 5.20 FIGURE / FIGCAPTION (lowkey frame + label + underlined download) */
-figure { margin: var(--s-4) 0; }
-figure img,
-figure video {
+/* 5.20 PLATE (modular frame for images, SVG drawings, canvases, swatches)
+   The unit a Fig. number attaches to. Discrete widths snap to the grid;
+   ratio is the source's natural ratio unless a modifier sets one. The
+   body hosts <img>, <svg>, <canvas>, <video>, or arbitrary content. */
+.plate {
+  display: inline-block;
+  width: 384px;                    /* .plate-md (default) */
+  max-width: 100%;
+  margin: var(--s-3) 0;
+  vertical-align: top;
+  position: relative;
+}
+.plate-xs { width: 192px; }
+.plate-sm { width: 256px; }
+.plate-md { width: 384px; }
+.plate-lg { width: 480px; }
+.plate-xl { width: 640px; }
+
+.plate-body {
+  position: relative;
+  border: 1px solid var(--rule);
+  padding: 4px;
+  background: var(--paper);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.plate-body > img,
+.plate-body > svg,
+.plate-body > canvas,
+.plate-body > video {
   display: block;
   width: 100%;
-  border: 1px solid var(--rule);   /* lowkey hairline frame */
-  padding: 4px;                    /* small mat between image and frame */
-  background: var(--paper);
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
-figcaption {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--s-4);
-  margin-top: var(--s-2);
-  padding: 0 4px;                  /* align with the image mat */
+
+/* opt-in aspect ratios (none by default) */
+.plate-1x1  .plate-body > * { aspect-ratio: 1 / 1;  height: auto; }
+.plate-4x3  .plate-body > * { aspect-ratio: 4 / 3;  height: auto; }
+.plate-3x2  .plate-body > * { aspect-ratio: 3 / 2;  height: auto; }
+.plate-16x9 .plate-body > * { aspect-ratio: 16 / 9; height: auto; }
+.plate-cover .plate-body > * { object-fit: cover; }
+
+/* corner tag: a small ochre number/label sitting over the top-left edge */
+.plate-tag {
+  position: absolute;
+  top: -10px;
+  left: 8px;
+  z-index: 1;
   font-family: var(--font-mono);
-  font-size: var(--t-xs);
-  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 2px 8px;
+  border: 1px solid var(--rule);
 }
-figcaption .fig-label { font-weight: 700; }
-figcaption .fig-meta {
-  opacity: 0.6;
-  font-weight: 400;
-  margin-left: var(--s-2);
+
+/* caption strip */
+.plate-cap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-3);
+  margin-top: 6px;
+  padding: 0 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
 }
-figcaption .fig-download {
+.plate-num  { font-weight: 700; margin-right: 6px; }
+.plate-url  {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1 1 auto;
+}
+.plate-url strong { font-weight: 700; }
+.plate-url span   { opacity: 0.5; font-weight: 400; }
+.plate-meta { opacity: 0.55; font-weight: 400; }
+.plate-dl {
   color: var(--ink);
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 2px;
   text-decoration-thickness: 1px;
   font-weight: 700;
   white-space: nowrap;
-  flex-shrink: 0;
+  flex: 0 0 auto;
 }
-figcaption .fig-download:hover {
+.plate-dl:hover {
   background: var(--accent);
   color: var(--on-accent);
   text-decoration: none;
+}
+
+/* numbered callout pin — place on the body with inline style for top/left */
+.plate-pin {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  user-select: none;
+}
+
+/* row + stack composition helpers */
+.plate-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  margin: var(--s-4) 0;
+  align-items: flex-start;
+}
+.plate-row > .plate { margin: 0; }
+.plate-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  margin: var(--s-4) 0;
+}
+.plate-stack > .plate { margin: 0; }
+
+/* legend: numbered key beside a tagged plate */
+.plate-legend {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding-left: var(--s-4);
+  border-left: 1px solid var(--rule);
+  min-width: 180px;
+  flex: 1 1 200px;
+}
+.plate-legend ol { padding-left: 0; margin: 0; }
+.plate-legend li { padding-left: var(--s-5); margin-bottom: var(--s-2); }
+
+/* swatch body — when the plate contains a flat color instead of a visual */
+.plate-swatch {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+}
+
+/* native <figure> stays minimal — no heavy frame, no caption strip */
+figure { margin: var(--s-4) 0; }
+figure img, figure video { max-width: 100%; height: auto; display: block; }
+figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  margin-top: var(--s-2);
+  opacity: 0.7;
 }
 
 /* ---------- 6. UTIL ------------------------------------ */
