@@ -243,10 +243,28 @@ hr.rule-thin { border: 0; border-top: 1px solid var(--rule); margin: var(--s-5) 
 .btn-ghost { margin: 0; }                  /* no shadow → no shadow margin */
 .btn:hover      { background: var(--accent); color: var(--on-accent); }
 .btn:active     { transform: translate(4px, 4px); box-shadow: 2px 2px 0 0 var(--ink); }
-.btn-primary    { background: var(--ink); color: var(--paper); }
+
+/* .btn-primary and .btn-accent are bright-on-dark in light mode and stay
+   bright in dark mode too — their border + shadow must stay dark so the
+   stamp reads in both themes (not flip to cream with the rest of --rule). */
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--on-accent);
+  box-shadow: 6px 6px 0 0 var(--on-accent);
+}
 .btn-primary:hover { background: var(--accent); color: var(--on-accent); }
-.btn-accent     { background: var(--accent); color: var(--on-accent); }
+.btn-primary:active { box-shadow: 2px 2px 0 0 var(--on-accent); }
+
+.btn-accent {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--on-accent);
+  box-shadow: 6px 6px 0 0 var(--on-accent);
+}
 .btn-accent:hover { background: var(--ink); color: var(--paper); }
+.btn-accent:active { box-shadow: 2px 2px 0 0 var(--on-accent); }
+
 .btn-ghost      { box-shadow: none; }
 
 /* 5.3 INPUT */
@@ -277,7 +295,12 @@ hr.rule-thin { border: 0; border-top: 1px solid var(--rule); margin: var(--s-5) 
   border: 1px solid var(--rule);
   background: var(--paper);
 }
-.badge-accent { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.badge-accent {
+  background: var(--accent);
+  color: var(--paper);          /* paper flips with theme: white-ish in light, dark in dark */
+  border-color: var(--accent);
+  font-weight: 700;             /* bolder than default badge */
+}
 .badge-soft   { background: var(--accent-soft); color: var(--on-accent); border-color: var(--accent-soft); }
 
 .stamp {
@@ -677,8 +700,11 @@ kbd {
 /* opt-in aspect ratios (none by default) */
 .plate-1x1  .plate-body > * { aspect-ratio: 1 / 1;  height: auto; }
 .plate-4x3  .plate-body > * { aspect-ratio: 4 / 3;  height: auto; }
+.plate-3x4  .plate-body > * { aspect-ratio: 3 / 4;  height: auto; }
 .plate-3x2  .plate-body > * { aspect-ratio: 3 / 2;  height: auto; }
+.plate-2x3  .plate-body > * { aspect-ratio: 2 / 3;  height: auto; }
 .plate-16x9 .plate-body > * { aspect-ratio: 16 / 9; height: auto; }
+.plate-9x16 .plate-body > * { aspect-ratio: 9 / 16; height: auto; }
 .plate-cover .plate-body > * { object-fit: cover; }
 
 /* corner tag: a small ochre number/label sitting over the top-left edge */
@@ -772,6 +798,38 @@ kbd {
   margin: var(--s-4) 0;
 }
 .plate-stack > .plate { margin: 0; }
+
+/* .plate-row-match — plates stretch to the tallest sibling's height.
+   When a ratio class is set on the plate (e.g. .plate-3x4), the body's
+   aspect-ratio is applied to the body itself so the plate's width
+   follows from the shared height. The inner visual fills with cover. */
+.plate-row-match { align-items: stretch; }
+.plate-row-match > .plate {
+  display: flex;
+  flex-direction: column;
+  width: auto;            /* width derives from the ratio'd body */
+  max-width: 100%;
+}
+.plate-row-match > .plate > .plate-body { flex: 1 1 auto; }
+.plate-row-match > .plate.plate-1x1  > .plate-body { aspect-ratio: 1 / 1; }
+.plate-row-match > .plate.plate-4x3  > .plate-body { aspect-ratio: 4 / 3; }
+.plate-row-match > .plate.plate-3x4  > .plate-body { aspect-ratio: 3 / 4; }
+.plate-row-match > .plate.plate-3x2  > .plate-body { aspect-ratio: 3 / 2; }
+.plate-row-match > .plate.plate-2x3  > .plate-body { aspect-ratio: 2 / 3; }
+.plate-row-match > .plate.plate-16x9 > .plate-body { aspect-ratio: 16 / 9; }
+.plate-row-match > .plate.plate-9x16 > .plate-body { aspect-ratio: 9 / 16; }
+.plate-row-match > .plate[class*="plate-1x1"]  > .plate-body > *,
+.plate-row-match > .plate[class*="plate-4x3"]  > .plate-body > *,
+.plate-row-match > .plate[class*="plate-3x4"]  > .plate-body > *,
+.plate-row-match > .plate[class*="plate-3x2"]  > .plate-body > *,
+.plate-row-match > .plate[class*="plate-2x3"]  > .plate-body > *,
+.plate-row-match > .plate[class*="plate-16x9"] > .plate-body > *,
+.plate-row-match > .plate[class*="plate-9x16"] > .plate-body > * {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;     /* the body now dictates the frame; image fills it */
+  object-fit: cover;
+}
 
 /* legend: numbered key beside a tagged plate */
 .plate-legend {

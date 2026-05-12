@@ -358,9 +358,9 @@ SVG, a canvas, a swatch, or any visual. Discrete widths snap to the grid;
 ratio stays natural unless you ask for one. Add a `.plate-tag` for the
 corner number, `.plate-pin` for callouts, `.plate-legend` for the key.
 
-**Two photographic plates.** Left: illustration at natural ratio. Right: photo locked to 4:3 with `.plate-cover`.
+**Two photographic plates.** Left: illustration at natural ratio (sets the height). Right: portrait locked to 3:4 — under `.plate-row-match` the second plate stretches to the first's height and its width follows from the ratio.
 
-<div class="plate-row mb-4">
+<div class="plate-row plate-row-match mb-4">
   <div class="plate plate-md">
     <div class="plate-body">
       <img alt="wild rabbit illustration" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Wild_Rabbit_Illustration.png/960px-Wild_Rabbit_Illustration.png" loading="lazy" />
@@ -370,7 +370,7 @@ corner number, `.plate-pin` for callouts, `.plate-legend` for the key.
       <a class="plate-dl" href="https://upload.wikimedia.org/wikipedia/commons/2/2f/Wild_Rabbit_Illustration.png" download="rabbit.png">download</a>
     </div>
   </div>
-  <div class="plate plate-md plate-4x3 plate-cover">
+  <div class="plate plate-3x4">
     <div class="plate-body">
       <img alt="rabbit standing on hind legs (LCCN)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Rabbit_standing_on_hind_legs_LCCN2004674687.tiff/lossy-page1-960px-Rabbit_standing_on_hind_legs_LCCN2004674687.tiff.jpg" loading="lazy" />
     </div>
