@@ -1,4 +1,4 @@
-<div class="band">CONCRETE · v0.4 · BRUTALIST–POSTMODERN · ONE FILE · NO JS</div>
+<div class="band" id="top">CONCRETE · v0.4 · BRUTALIST–POSTMODERN · ONE FILE · NO JS</div>
 
 # CONCRETE
 
@@ -308,25 +308,35 @@ A page-bottom strip with mono links and meta, separated by a fat rule.
 
 ### 3.15 Pagination
 
+Every page link points to `#top` (or any anchor at the head of the list).
+The system enables `scroll-behavior: smooth` globally, so clicking a page glides
+the user back to the start of the content. Try it: clicking these scrolls this page to its top.
+
 <nav class="pagination">
-  <a href="#">‹ prev</a>
-  <a href="#">1</a>
-  <a href="#">2</a>
+  <a href="#top">‹ prev</a>
+  <a href="#top">1</a>
+  <a href="#top">2</a>
   <span aria-current="page">3</span>
-  <a href="#">4</a>
-  <a href="#">5</a>
-  <a href="#">next ›</a>
+  <a href="#top">4</a>
+  <a href="#top">5</a>
+  <a href="#top">next ›</a>
 </nav>
 
 ```html
+<!-- somewhere near the top of your page or list -->
+<div id="top"></div>
+
 <nav class="pagination">
-  <a href="#">‹ prev</a>
-  <a href="#">1</a>
+  <a href="#top">‹ prev</a>
+  <a href="#top">1</a>
   <span aria-current="page">2</span>
-  <a href="#">3</a>
-  <a href="#">next ›</a>
+  <a href="#top">3</a>
+  <a href="#top">next ›</a>
 </nav>
 ```
+
+For lists that should anchor mid-page (not the entire viewport), put the
+`id="top"` on the list header instead of the page top.
 
 ### 3.16 Breadcrumb
 
