@@ -267,12 +267,24 @@ Tokens are stable; component class names will not break in 0.x patches.
 
 <hr class="rule">
 
-<div class="grid grid-2 mt-6 mb-8">
+<div class="grid grid-2 mt-6 mb-6">
   <div>
     <p class="mono upper muted">end of document</p>
     <p class="serif" style="font-size:var(--t-lg);line-height:1.15">"A building should look like what it is."<br>— and so should a website.</p>
   </div>
   <div class="right">
     <span class="stamp">v0.3</span>
+  </div>
+</div>
+
+<hr class="rule-thin">
+
+<div class="grid grid-2 mb-8">
+  <div class="mono upper" style="font-size:var(--t-sm);letter-spacing:0.08em">
+    <a href="https://github.com/arrow501/concrete">github.com/arrow501/concrete</a><br>
+    <a href="https://concrete.pages.dev">concrete.pages.dev</a>
+  </div>
+  <div class="right mono upper muted" style="font-size:var(--t-sm);letter-spacing:0.08em">
+    by Arrow · 2026
   </div>
 </div>
