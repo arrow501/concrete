@@ -800,36 +800,19 @@ kbd {
 .plate-stack > .plate { margin: 0; }
 
 /* .plate-row-match — plates stretch to the tallest sibling's height.
-   Plates keep their size class (e.g. .plate-md stays 320). Add .plate-auto
-   to a ratio-locked plate when you want its width derived from the shared
-   row height instead of a fixed size. */
-.plate-row-match { align-items: stretch; flex-wrap: nowrap; }
+   Pair this with explicit, matching dimensions on each plate (a fixed
+   size class + ratio class on plate 1, an inline width + ratio class on
+   plate 2) so the layout is deterministic. The system does NOT derive
+   widths dynamically — that path turned out to be too fragile. */
+.plate-row-match {
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
 .plate-row-match > .plate {
   display: flex;
   flex-direction: column;
-  max-width: 100%;
 }
-.plate-row-match > .plate > .plate-body { flex: 1 1 auto; }
-.plate-auto { width: auto; }
-.plate-row-match > .plate.plate-1x1  > .plate-body { aspect-ratio: 1 / 1; }
-.plate-row-match > .plate.plate-4x3  > .plate-body { aspect-ratio: 4 / 3; }
-.plate-row-match > .plate.plate-3x4  > .plate-body { aspect-ratio: 3 / 4; }
-.plate-row-match > .plate.plate-3x2  > .plate-body { aspect-ratio: 3 / 2; }
-.plate-row-match > .plate.plate-2x3  > .plate-body { aspect-ratio: 2 / 3; }
-.plate-row-match > .plate.plate-16x9 > .plate-body { aspect-ratio: 16 / 9; }
-.plate-row-match > .plate.plate-9x16 > .plate-body { aspect-ratio: 9 / 16; }
-.plate-row-match > .plate[class*="plate-1x1"]  > .plate-body > *,
-.plate-row-match > .plate[class*="plate-4x3"]  > .plate-body > *,
-.plate-row-match > .plate[class*="plate-3x4"]  > .plate-body > *,
-.plate-row-match > .plate[class*="plate-3x2"]  > .plate-body > *,
-.plate-row-match > .plate[class*="plate-2x3"]  > .plate-body > *,
-.plate-row-match > .plate[class*="plate-16x9"] > .plate-body > *,
-.plate-row-match > .plate[class*="plate-9x16"] > .plate-body > * {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: auto;     /* the body now dictates the frame; image fills it */
-  object-fit: cover;
-}
+.plate-row-match > .plate > .plate-body { flex: 1 1 auto; min-height: 0; }
 
 /* legend: numbered key beside a tagged plate */
 .plate-legend {
