@@ -313,11 +313,32 @@ hr.rule-thin { border: 0; border-top: 1px solid var(--rule); margin: var(--s-5) 
 }
 .nav a:hover { background: var(--accent); color: var(--on-accent); }
 
-/* 5.6 TABLE */
-.table { width: 100%; border-collapse: collapse; font-size: var(--t-sm); }
-.table th, .table td { border: 1px solid var(--rule); padding: var(--s-2) var(--s-3); text-align: left; }
-.table th { background: var(--ink); color: var(--paper); text-transform: uppercase; letter-spacing: 0.05em; }
-.table tr:nth-child(even) td { background: var(--paper-2); }
+/* 5.6 TABLE (styles both .table and native <table>) */
+table, .table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-sm);
+  table-layout: fixed;             /* equal columns so cells align with headers */
+  margin: 0 0 var(--s-5);
+}
+table th, table td,
+.table th, .table td {
+  border: 1px solid var(--rule);
+  padding: var(--s-2) var(--s-3);
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+table th, .table th {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+table tbody tr:nth-child(even) td,
+.table tbody tr:nth-child(even) td { background: var(--paper-2); }
 
 /* 5.7 CALLOUT */
 .callout {
