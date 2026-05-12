@@ -205,7 +205,7 @@ Active state physically depresses into its shadow — press one.
   <div class="box box-shadow tilt-r">.tilt-r</div>
 </div>
 
-<div class="callout">Use one offset/tilt per section, not five. <strong>Restraint is the joke.</strong></div>
+<div class="callout">Use one offset or tilt per section, not five. More than that just looks broken.</div>
 
 ## 5 · Type rules
 
