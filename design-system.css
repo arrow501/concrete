@@ -1,0 +1,390 @@
+/* =========================================================
+   CONCRETE — a brutalist-postmodern design system
+   v0.3  ·  zero dependencies  ·  one file
+   palette: warm newsprint + ochre + deep teal + oxblood
+            (civic-institutional, no fluorescents)
+   theme:   light by default · .theme-dark opts in
+   ========================================================= */
+
+/* ---------- 1. TOKENS · LIGHT (default) ---------------- */
+:root {
+  /* type
+     body    → Spectral (Production Type, characterful screen serif)
+     display → Fraunces (expressive variable serif for H1)
+     mono    → JetBrains Mono (UI, labels, code, H2/H3)
+     fallbacks: nice system serifs before generic — no Times. */
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-body:    "Spectral", "Iowan Old Style", "Charter", "Sitka Text", Georgia, serif;
+  --font-display: "Fraunces", "Iowan Old Style", "Charter", Georgia, serif;
+  --font-serif:   var(--font-body); /* legacy alias */
+  --font-sans:    -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  /* scale — modular, raised floor (no sub-14px text anywhere) */
+  --t-xs: 0.875rem;   /* 14px — was 12 */
+  --t-sm: 1rem;       /* 16px — was 14 */
+  --t-base: 1.125rem; /* 18px — was 16 */
+  --t-md: 1.375rem;   /* 22px — was 20 */
+  --t-lg: 1.875rem;   /* 30px — was 28 */
+  --t-xl: 2.75rem;    /* 44px — was 40 */
+  --t-xxl: 4.25rem;   /* 68px — was 64 */
+  --t-mega: 7rem;     /* 112px — was 104 */
+
+  /* space — 4px grid */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+  /* surface — warm newsprint over inkstone */
+  --ink:     #141210;             /* near-black, slightly warm */
+  --paper:   #f1ece1;             /* warm newsprint */
+  --paper-2: #d9d0bb;             /* recessed surface — deeper for clear separation */
+  --rule:    #141210;
+
+  /* voltage — civic/institutional palette
+     warm + cool + alert. nothing fluorescent, nothing candy. */
+  --accent:        #9a6a14;       /* ochre · primary accent — slightly deeper for fill use */
+  --accent-soft:   #b88a26;       /* mid ochre · for soft fills (deeper than before) */
+  --link:          #1d4f4a;       /* deep teal · links, callouts (library-card civic) */
+  --alert:         #7a2a23;       /* oxblood · stamps, warnings (dried, not fire-engine) */
+
+  /* fixed contrast — these NEVER flip with theme.
+     use --on-accent on any voltage background. */
+  --on-accent: #141210;           /* always-dark text on bright accents */
+  --on-alert:  #f1ece1;           /* always-light text on alert red */
+
+  /* structure */
+  --border-w: 2px;
+  --border-w-fat: 6px;
+  --radius: 0;                    /* never round. */
+  --shadow-hard: 6px 6px 0 0 var(--ink);
+  --shadow-fat:  10px 10px 0 0 var(--ink);
+  --shadow-accent: 6px 6px 0 0 var(--accent);
+}
+
+/* ---------- 1b. TOKENS · DARK (opt-in) ----------------- */
+.theme-dark {
+  --ink:     #ede7d8;
+  --paper:   #131210;
+  --paper-2: #28241d;             /* deeper separation from --paper in dark too */
+  --rule:    #ede7d8;
+
+  /* accents bumped slightly for dark-bg legibility */
+  --accent:      #d49a2f;         /* ochre +luminance */
+  --accent-soft: #e3b357;
+  --link:        #6ab4ac;         /* lifted deep teal → aqua */
+  --alert:       #b8443a;         /* lifted oxblood */
+  /* --on-accent / --on-alert intentionally NOT overridden — they stay fixed */
+}
+
+/* ---------- 2. RESET (light) --------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 19px;            /* body reads at 19 — raised floor for comfortable serif body */
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  font-feature-settings: "ss01", "onum"; /* old-style figures where supported */
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+
+/* ---------- 3. TYPE ------------------------------------ */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(var(--t-xl), 8vw, var(--t-mega));
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  margin: 0 0 var(--s-5);
+  /* Fraunces optical sizing + slight expressive SOFT axis */
+  font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+}
+h2, .h2 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--t-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: var(--s-7) 0 var(--s-4);
+  border-bottom: var(--border-w) solid var(--rule);
+  padding-bottom: var(--s-2);
+  position: relative;
+}
+/* editor's mark — small ochre square preceding every H2 */
+h2::before {
+  content: "";
+  display: inline-block;
+  width: 0.55em; height: 0.55em;
+  background: var(--accent);
+  margin-right: var(--s-3);
+  transform: translateY(-0.05em);
+}
+h3, .h3 {
+  font-family: var(--font-mono);
+  font-size: var(--t-md);
+  margin: var(--s-5) 0 var(--s-3);
+  text-transform: uppercase;
+}
+p { margin: 0 0 var(--s-4); max-width: 68ch; }
+
+/* mono-body override — for paragraphs that need to feel like terminal text */
+.p-mono { font-family: var(--font-mono); font-size: var(--t-base); }
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+a:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+  text-decoration: none;
+}
+
+code, kbd, pre, samp { font-family: var(--font-mono); font-size: 0.95em; }
+code { background: var(--paper-2); padding: 2px 6px; border: 1px solid var(--rule); }
+pre {
+  background: var(--ink); color: var(--paper);
+  padding: var(--s-4); overflow-x: auto;
+  border: var(--border-w) solid var(--rule);
+}
+pre code { background: transparent; border: 0; padding: 0; color: inherit; }
+
+::selection { background: var(--accent); color: var(--on-accent); }
+
+/* postmodern wink: serif drop-cap */
+.dropcap::first-letter {
+  font-family: var(--font-serif);
+  font-size: 5em;
+  float: left;
+  line-height: 0.85;
+  padding: 6px 10px 0 0;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+blockquote {
+  margin: var(--s-5) 0;
+  padding: var(--s-3) var(--s-5);
+  border-left: var(--border-w-fat) solid var(--accent);
+  font-family: var(--font-serif);
+  font-size: var(--t-md);
+  font-style: italic;
+  max-width: 60ch;
+}
+
+/* ---------- 4. LAYOUT ---------------------------------- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--s-6) var(--s-5);
+}
+.grid { display: grid; gap: var(--s-5); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-12 { grid-template-columns: repeat(12, 1fr); }
+@media (max-width: 720px) {
+  .grid-2, .grid-3, .grid-12 { grid-template-columns: 1fr; }
+}
+
+.offset-up   { transform: translateY(-12px); }
+.offset-down { transform: translateY(12px); }
+.tilt-l      { transform: rotate(-1.2deg); }
+.tilt-r      { transform: rotate(1.2deg); }
+
+hr.rule      { border: 0; border-top: var(--border-w-fat) solid var(--rule); margin: var(--s-7) 0; }
+hr.rule-thin { border: 0; border-top: 1px solid var(--rule); margin: var(--s-5) 0; }
+
+/* ---------- 5. COMPONENTS ------------------------------ */
+
+/* 5.1 BOX */
+.box {
+  background: var(--paper);
+  border: var(--border-w) solid var(--rule);
+  padding: var(--s-5);
+}
+.box-fat        { border-width: var(--border-w-fat); }
+.box-shadow     { box-shadow: var(--shadow-hard); }
+.box-shadow-fat { box-shadow: var(--shadow-fat); }
+.box-shadow-accent { box-shadow: var(--shadow-accent); }
+.box-invert     { background: var(--ink); color: var(--paper); }
+.box-accent     { background: var(--accent); color: var(--on-accent); }
+.box-soft       { background: var(--accent-soft); color: var(--on-accent); }
+.box-paper-2    { background: var(--paper-2); }
+
+/* 5.2 BUTTON */
+.btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--t-base);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--s-3) var(--s-5);
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--border-w) solid var(--rule);
+  box-shadow: var(--shadow-hard);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 80ms ease, background 80ms ease;
+}
+.btn:hover      { background: var(--accent); color: var(--on-accent); }
+.btn:active     { transform: translate(4px, 4px); box-shadow: 2px 2px 0 0 var(--ink); }
+.btn-primary    { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--accent); color: var(--on-accent); }
+.btn-accent     { background: var(--accent); color: var(--on-accent); }
+.btn-accent:hover { background: var(--ink); color: var(--paper); }
+.btn-ghost      { box-shadow: none; }
+
+/* 5.3 INPUT */
+.input, textarea.input, select.input {
+  font-family: var(--font-mono);
+  font-size: var(--t-base);
+  padding: var(--s-3);
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--border-w) solid var(--rule);
+  width: 100%;
+}
+.input:focus {
+  outline: 0;
+  background: var(--paper);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-accent);
+}
+
+/* 5.4 BADGE / STAMP */
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 2px var(--s-2);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+}
+.badge-accent { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.badge-soft   { background: var(--accent-soft); color: var(--on-accent); border-color: var(--accent-soft); }
+
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--s-2) var(--s-4);
+  color: var(--alert);
+  border: 3px solid var(--alert);
+  transform: rotate(-6deg);
+}
+
+/* 5.5 NAV */
+.nav {
+  display: flex; flex-wrap: wrap; gap: var(--s-4);
+  border-bottom: var(--border-w-fat) solid var(--rule);
+  padding-bottom: var(--s-3);
+  margin-bottom: var(--s-6);
+  align-items: baseline;
+}
+.nav .brand {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: var(--t-lg);
+  margin-right: auto;
+}
+.nav a {
+  color: var(--ink);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: var(--t-sm);
+  letter-spacing: 0.05em;
+  padding: 2px 4px;
+}
+.nav a:hover { background: var(--accent); color: var(--on-accent); }
+
+/* 5.6 TABLE */
+.table { width: 100%; border-collapse: collapse; font-size: var(--t-sm); }
+.table th, .table td { border: 1px solid var(--rule); padding: var(--s-2) var(--s-3); text-align: left; }
+.table th { background: var(--ink); color: var(--paper); text-transform: uppercase; letter-spacing: 0.05em; }
+.table tr:nth-child(even) td { background: var(--paper-2); }
+
+/* 5.7 CALLOUT */
+.callout {
+  border-left: var(--border-w-fat) solid var(--link);
+  background: var(--paper-2);
+  padding: var(--s-4) var(--s-5);
+  margin: var(--s-5) 0;
+}
+.callout-warn { border-left-color: var(--alert); }
+.callout-yay  { border-left-color: var(--accent-soft); }
+
+/* 5.8 BAND */
+.band {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  padding: var(--s-2) var(--s-4);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.band-accent { background: var(--accent); color: var(--on-accent); }
+.band-soft   { background: var(--accent-soft); color: var(--on-accent); }
+
+/* 5.9 SWATCH (color spec component) */
+.swatch {
+  display: flex; align-items: stretch;
+  border: var(--border-w) solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  min-height: 64px;
+}
+.swatch-chip { width: 64px; flex-shrink: 0; }
+.swatch-meta { padding: var(--s-2) var(--s-3); display: flex; flex-direction: column; justify-content: center; }
+.swatch-meta strong { letter-spacing: 0.04em; }
+.swatch-meta span { opacity: 0.7; font-size: var(--t-xs); }
+
+/* 5.10 THEME TOGGLE */
+.theme-toggle {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--border-w) solid var(--rule);
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.theme-toggle:hover { background: var(--accent); color: var(--on-accent); }
+
+/* ---------- 6. UTIL ------------------------------------ */
+.mono   { font-family: var(--font-mono); }
+.serif  { font-family: var(--font-serif); }
+.upper  { text-transform: uppercase; letter-spacing: 0.05em; }
+.center { text-align: center; }
+.right  { text-align: right; }
+.muted  { opacity: 0.65; }
+.invert { background: var(--ink); color: var(--paper); padding: 2px 6px; }
+.mark   { background: var(--accent-soft); color: var(--on-accent); padding: 0 4px; }
+
+.mt-0{margin-top:0}.mt-4{margin-top:var(--s-4)}.mt-6{margin-top:var(--s-6)}.mt-8{margin-top:var(--s-8)}
+.mb-0{margin-bottom:0}.mb-4{margin-bottom:var(--s-4)}.mb-6{margin-bottom:var(--s-6)}.mb-8{margin-bottom:var(--s-8)}
+
+/* ---------- 7. MOTION (sparingly) ---------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hover-jitter:hover { animation: jitter 220ms steps(3) infinite; }
+  @keyframes jitter {
+    0%   { transform: translate(0,0); }
+    33%  { transform: translate(-1px, 1px); }
+    66%  { transform: translate(1px, -1px); }
+    100% { transform: translate(0,0); }
+  }
+}

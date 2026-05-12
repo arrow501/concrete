@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CONCRETE · brutalist–postmodern design system</title>
+
+<!-- Fonts: Newsreader (body), Fraunces (display), JetBrains Mono (UI) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,30..100,0..1&family=JetBrains+Mono:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="design-system.css">
+<style>
+  /* shell-only — everything else from the system */
+  #doc { opacity: 0; transition: opacity 160ms ease; }
+  #doc.ready { opacity: 1; }
+  #loading { padding: var(--s-6) var(--s-5); font-family: var(--font-mono); }
+
+  .theme-pin {
+    position: fixed; top: var(--s-4); right: var(--s-4);
+    z-index: 50;
+  }
+</style>
+</head>
+<body>
+<button class="theme-toggle theme-pin" id="themeBtn" type="button" aria-label="Toggle theme">
+  <span id="themeLabel">DARK</span>
+</button>
+
+<main class="container">
+  <div id="loading">loading DESIGN.md …</div>
+  <article id="doc"></article>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  // Theme — light is default; .theme-dark opts in. Persists via localStorage.
+  (function () {
+    const root = document.documentElement;
+    const label = document.getElementById('themeLabel');
+    const btn = document.getElementById('themeBtn');
+    const apply = (mode) => {
+      root.classList.toggle('theme-dark', mode === 'dark');
+      label.textContent = mode === 'dark' ? 'LIGHT' : 'DARK';
+    };
+    apply(localStorage.getItem('concrete-theme') || 'light');
+    btn.addEventListener('click', () => {
+      const next = root.classList.contains('theme-dark') ? 'light' : 'dark';
+      localStorage.setItem('concrete-theme', next);
+      apply(next);
+    });
+  })();
+
+  // Render the MD as the page.
+  (async () => {
+    const loading = document.getElementById('loading');
+    const doc = document.getElementById('doc');
+    try {
+      const res = await fetch('DESIGN.md');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const md = await res.text();
+      marked.setOptions({ gfm: true, breaks: false, headerIds: true, mangle: false });
+      doc.innerHTML = marked.parse(md);
+      loading.remove();
+      doc.classList.add('ready');
+    } catch (e) {
+      loading.innerHTML =
+        '<div class="callout callout-warn"><strong>Could not load DESIGN.md.</strong><br>' +
+        'Serve this folder over HTTP (e.g. <code>python -m http.server</code>) — ' +
+        'browsers block <code>fetch()</code> on <code>file://</code>.<br><br>' +
+        '<span class="muted">' + e.message + '</span></div>';
+    }
+  })();
+</script>
+</body>
+</html>
